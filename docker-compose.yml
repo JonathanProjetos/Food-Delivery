@@ -5,17 +5,21 @@ services:
   node:
     image: node:16.14
     container_name: food_delivery
+    tty: true
+    stdin_open: true
     restart: always
-    command: bash
+    command: bash -c "npm install && npm start"
     working_dir: /app
     volumes:
       - ./:/app
+      - ./package.json:/app/package.json
+      - ./package-lock.json:/app/package-lock.json
     depends_on:
       - mongodb
     ports:
       - 3001:3001
     environment:
-      - MONGO_URI=${MONGO_LINK}
+      - MONGO_URI=${MONGO_DB_URL}
     
   mongodb:
     image: mongo:5.0.7
@@ -25,6 +29,7 @@ services:
     restart: always
     ports:
       - 27017:27017
-  networks:
+
+networks:
     default:
       name: food_delivery_net
