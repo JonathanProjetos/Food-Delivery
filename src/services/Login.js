@@ -30,6 +30,27 @@ const LoginServices = {
 
     return token;
   },
+  
+  Register: async (body) => {
+
+    //valido o corpo da requisição
+    const check = joiUser(body);
+    console.log(check);
+
+    //busco pelo email no banco de dados
+    const user = await userModel.findOne({ email: check.email });
+
+    //verifico se o email existe
+    if(user) throw new Error("404|Usuario já cadastrado");
+
+    //criptografo a senha
+    const password = encrypt(check.password);
+
+    //crio o usuario
+    await userModel.create({ email: check.email, password });
+
+    return { message: "Usuario criado com sucesso" }
+  }
 
 }
 
