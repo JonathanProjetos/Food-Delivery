@@ -30,6 +30,15 @@ const LoginServices = {
 
     return token;
   },
+
+  CheckAcessLogin: async (email) => {
+    //busco pelo email no banco de dados
+    const user =  await userModel.findOne({ email: email });
+
+    if(!user) throw new Error("404|Usuario não encontrado");
+
+    return { message: "ok" }
+  },
   
   Register: async (body) => {
 
@@ -50,7 +59,7 @@ const LoginServices = {
     await userModel.create({ email: check.email, password });
 
     return { message: "Usuario criado com sucesso" }
-  }
+  },
 
 }
 
