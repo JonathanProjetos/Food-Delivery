@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  
+  node:
+    image: node:16.14
+    container_name: food_delivery
+    restart: always
+    command: bash
+    working_dir: /app
+    volumes:
+      - ./:/app
+    depends_on:
+      - mongodb
+    ports:
+      - 3001:3001
+    environment:
+      - MONGO_URI=${MONGO_LINK}
+    
+  mongodb:
+    image: mongo:5.0.7
+    container_name: food_delivery_db
+    volumes:
+      - ./:/app
+    restart: always
+    ports:
+      - 27017:27017
+  networks:
+    default:
+      name: food_delivery_net
