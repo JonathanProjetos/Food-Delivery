@@ -12,11 +12,9 @@ const LoginServices = {
     //valido o corpo da requisição
     const check = joiUser(body);
 
-    // console.log('testando', check.password)
-
     //busco pelo email no banco de dados
     const user = await userModel.findOne({ email: check.email });
-    console.log('retorno aqui',user.password);
+    console.log('retorno aqui',user.id);
     //verifico se o email existe
     if(!user) throw new Error("404|Usuario não encontrado");
 
@@ -26,7 +24,7 @@ const LoginServices = {
     }
 
     //gero o token
-    const token = createToken.generateToken(check.email);
+    const token = createToken.generateToken(check.email, user.id);
 
     return token;
   },
