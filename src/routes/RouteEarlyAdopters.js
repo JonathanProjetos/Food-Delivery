@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const ordersEarlyAdoptersControllers = require('../controllers/Early_Adopters');
+const ordersEarlyAdoptersControllers = require('../controllers/EarlyAdopters');
 const checkToken = require('../middlewares/checkToken');
 
 const EarlyAdoptersRoute = Router();

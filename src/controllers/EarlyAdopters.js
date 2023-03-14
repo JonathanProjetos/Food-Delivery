@@ -1,4 +1,4 @@
-const Early_Adopters = require('../services/Early_Adopters');
+const Early_Adopters = require('../services/EarlyAdopters');
 
 const ordersEarlyAdoptersController = {
   create: async (req, res) => {
