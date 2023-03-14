@@ -10,6 +10,7 @@ app.use(express.json())
 
 app.use('/', loginRouter);
 app.use('/', productsRouter);
+app.use('/', MVPRoute);
 
 app.use((err, _req, res, _next) => {
   const [code, message] = err.message.split('|');
