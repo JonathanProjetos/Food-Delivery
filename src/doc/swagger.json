@@ -1,0 +1,838 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Food Delivery API",
+    "version": "1.0.0",
+    "description": "Nesta API é possível autenticar, buscar e inserir dados conforme alguns critérios, sendo eles: limite de produtos, que alterna conforme o endpoint, e a quantidade de usuários cadastrados no banco."
+  },
+  "paths" : {
+    "/login": {
+      "post": {
+        "summary": "Autenticação",
+        "description": "Autenticação de usuário",
+        "tags": [
+          "Autenticação"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json" : {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "example": {
+                "email": "test@test.com",
+                "password" : "123456"
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                  "token": {
+                    "type": "string"
+                    } 
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/register": {
+      "post": {
+        "summary": "Criação de usuário",
+        "description": "Cração de usuário",
+        "tags": [
+          "Autenticação"
+        ],
+        "requestBody": {
+          "content": {
+            "application/json" : {
+              "schema": {
+                "$ref": "#/components/schemas/Login"
+              },
+              "example": {
+                "email" : "test@test.com",
+                "password" : "123456"
+              }
+            }
+          }
+        },  
+        "responses" : {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "Conflict",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/login/validate": {
+      "get": {
+        "summary": "Validação de acesso",
+        "description": "Validação de presença de token",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Autenticação"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+
+        "responses" : {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not Found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/products" :{
+      "get": {
+        "summary": "Listagem de produtos",
+        "description": "Listagem de todos os produtos é nescessário logar e oferecer o token para autenticação",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Products"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Products"
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not Found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+
+      "post": {
+        "summary": "Criação de produtos",
+        "description": "Para criar produtos é nescessário logar e oferecer o token para autenticação",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Products"
+        ],
+
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref": "#/components/schemas/Products"
+              },
+              "example": {
+                  "name": "pudin",
+                  "description": "pudin de leite",
+                  "price": 100
+              }
+            }
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Products"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not Found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "409": {
+            "description": "Product already exists",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/mvp/orders" : {
+      "post": {
+        "summary": "Criação de pedidos",
+        "description": "Este end point estará disponivel quando estiver com limite no máximo de 100 pessoas usuárias cadastradas no banco de dados, é um total de 5 produtos sendo pela variedade ou pela quantidade.",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders"
+        ],
+
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              }
+            }
+          }
+        },
+
+        "examples": {
+          "application/json": {
+            "name": "Teste",
+            "address": "Rua teste",
+            "phone": "999999999",
+            "methodPayment": "Dinheiro",
+            "orders": [
+              {
+                "name": "Teste",
+                "price": 10,
+                "quantity": 1
+              }
+            ]
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+
+          "429": {
+            "description": "Too many requests",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad Request",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not Found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/earlyAdopters/orders" : {
+      "post": {
+        "summary": "Criação de pedidos",
+        "description": "Este end point estará disponivel quando estiver com limite no máximo de 10000 pessoas usuárias cadastradas no banco de dados, e um total de 15 produtos sendo pela variedade ou pela quantidade.",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders"
+        ],
+
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              }
+            }
+          }
+        },
+
+        "examples": {
+          "application/json": {
+            "name": "Teste",
+            "address": "Rua teste",
+            "phone": "999999999",
+            "methodPayment": "Dinheiro",
+            "orders": [
+              {
+                "name": "Teste",
+                "price": 10,
+                "quantity": 1
+              }
+            ]
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+
+          "429": {
+            "description": "Too many requests",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad Request",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not Found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }     
+        }
+      }
+    },
+
+    "/earlyMajority/orders" : {
+      "post": {
+        "summary": "Criação de pedidos",
+        "description": "Este end point estará disponivel quando estiver com limite no máximo de 1000000 pessoas usuárias cadastradas no banco de dados, e um total de 20 produtos sendo pela variedade ou pela quantidade.",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders"
+        ],
+
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              }
+            }
+          }
+        },
+
+        "examples": {
+          "application/json": {
+            "name": "Teste",
+            "address": "Rua teste",
+            "phone": "999999999",
+            "methodPayment": "Dinheiro",
+            "orders": [
+              {
+                "name": "Teste",
+                "price": 10,
+                "quantity": 1
+              }
+            ]
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+
+          "429": {
+            "description": "Too many requests",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad Request",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }    
+        }
+      }
+    },
+
+    "/lateMajority/orders" : {
+      "post": {
+        "summary": "Criação de pedidos",
+        "description": "Este endpoint exemplifica a plenitude da capacidade da API. Nela, não é estabelecido limite de itens, quantidade ou pessoas cadastradas no banco.",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders"
+        ],
+
+        "requestBody": {
+          "content": {
+            "application/json":{
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              }
+            }
+          }
+        },
+
+        "examples": {
+          "application/json": {
+            "name": "Teste",
+            "address": "Rua teste",
+            "phone": "999999999",
+            "methodPayment": "Dinheiro",
+            "orders": [
+              {
+                "name": "Teste",
+                "price": 10,
+                "quantity": 1
+              }
+            ]
+          }
+        },
+
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+
+          "400": {
+            "description": "Bad Request",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Not Found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }     
+        }
+      }
+    }
+  },
+
+  "components" : {
+    "schemas" : {
+      "Login" : {
+        "type" : "object",
+        "properties" : {
+          "email" : {
+            "type" : "string"
+          },
+          "password" : {
+            "type" : "string"
+          }
+        }
+      },
+
+      "Products":{
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "quantity": {
+            "type": "integer"
+          },
+          "description": {
+            "type": "number"
+          }
+        }
+      },
+
+      "Orders": {
+        "type":"object",
+        "properties": {
+          "name": {
+            "type": "string"
+            },
+          "address": {
+            "type": "string"
+            },
+          "phone": {
+            "type": "string"
+            },
+          "methodPayment": {
+            "type": "string"
+            },
+          "orders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+              "name": {
+                "type": "string"
+                },
+              "price": {
+                "type": "number"
+                },
+              "quantity": {
+                "type": "integer"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "securitySchemes":{
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
