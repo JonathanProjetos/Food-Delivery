@@ -18,7 +18,7 @@ const OrdersEarlyMajorityServices = {
     // verificando se a quantidade de itens é maior que 5
     checkQuantityItems.bodyEarlyMajority(orders);
     // verificando se o token existe
-    if(!email) throw new Error('401|Token not found');
+    if(!email) throw new Error('401|Unauthorized');
   
     const users = await user.find();
     const getUserId = await user.findOne({ email });

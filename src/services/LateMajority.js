@@ -3,7 +3,7 @@ const user = require('../models/userModel');
 const checkQuantityItems = require('../middlewares/checkQuantityItems');
 
 
-const OrdersEarlyAdoptersServices = {
+const OrdersLateMajorityServices = {
 
   create: async (body) => {
     const { 
@@ -16,15 +16,11 @@ const OrdersEarlyAdoptersServices = {
      } = body;
     
     // verificando se a quantidade de itens é maior que 5
-    checkQuantityItems.bodyEarlyAdopters(orders);
+    checkQuantityItems.bodyLateMajority(orders);
     // verificando se o token existe
     if(!email) throw new Error('401|Unauthorized');
-  
-    const users = await user.find();
-    const getUserId = await user.findOne({ email });
 
-    // verificando a quantidade de usuários cadastrados
-    if(users.length > 10000) throw new Error('429|Too many requests');
+    const getUserId = await user.findOne({ email });
 
     const result = await order.create({ 
       name,
@@ -40,4 +36,4 @@ const OrdersEarlyAdoptersServices = {
 }
 
 
-module.exports = OrdersEarlyAdoptersServices;
+module.exports = OrdersLateMajorityServices;

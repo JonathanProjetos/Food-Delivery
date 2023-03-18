@@ -3,14 +3,14 @@ const products = require('../models/productModel');
 
 const ProductsServices = {
   getAll: async (email) => {
-    if(!email) throw new Error('401|Token not found');
+    if(!email) throw new Error('401|Unauthorized');
     const allProducts = await products.find();
     return allProducts;
   },
 
   create: async (product) => {
     const { name, price, description, email } = product;
-    if(!email) throw new Error('401|Token not found');
+    if(!email) throw new Error('401|Unauthorized');
     
     const allProducts = await products.find();
 

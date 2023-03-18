@@ -14,9 +14,9 @@ const LoginServices = {
 
     //busco pelo email no banco de dados
     const user = await userModel.findOne({ email: check.email });
-    console.log('retorno aqui',user.id);
+
     //verifico se o email existe
-    if(!user) throw new Error("404|Usuario não encontrado");
+    if(!user) throw new Error("404|user not found");
 
     //verifico se a senha está correta
     if(!bcryptjs.compareSync(check.password, user.password)) {
@@ -24,7 +24,7 @@ const LoginServices = {
     }
 
     //gero o token
-    const token = createToken.generateToken(check.email, user.id);
+    const token = createToken.generateToken(check.email);
 
     return token;
   },
@@ -33,7 +33,7 @@ const LoginServices = {
     //busco pelo email no banco de dados
     const user =  await userModel.findOne({ email: email });
 
-    if(!user) throw new Error("404|Usuario não encontrado");
+    if(!user) throw new Error("401| unauthorized");
 
     return { message: "ok" }
   },
@@ -48,7 +48,7 @@ const LoginServices = {
     const user = await userModel.findOne({ email: check.email });
 
     //verifico se o email existe
-    if(user) throw new Error("404|Usuario já cadastrado");
+    if(user) throw new Error("409|user already registered");
 
     //criptografo a senha
     const password = encrypt(check.password);
@@ -56,7 +56,7 @@ const LoginServices = {
     //crio o usuario
     await userModel.create({ email: check.email, password });
 
-    return { message: "Usuario criado com sucesso" }
+    return { message: "successfully registered user" }
   },
 
 }

@@ -6,7 +6,7 @@ const ordersEarlyMajorityController = {
     const { body } = req;
 
     const newOrder = await Early_Majority.create({ ...body, email });
-    res.status(201).json(newOrder);
+    res.status(200).json(newOrder);
   }
 
 }
