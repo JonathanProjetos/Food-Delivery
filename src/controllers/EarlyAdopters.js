@@ -6,7 +6,7 @@ const ordersEarlyAdoptersController = {
     const { body } = req;
 
     const newOrder = await Early_Adopters.create({ ...body, email });
-    res.status(201).json(newOrder);
+    res.status(200).json(newOrder);
   }
 
 }
