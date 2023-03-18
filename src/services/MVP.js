@@ -18,7 +18,7 @@ const OrdersMVPServices = {
     // verificando se a quantidade de itens é maior que 5
     checkQuantityItems.bodyMVP(orders);
     // verificando se o token existe
-    if(!email) throw new Error('401|Token not found');
+    if(!email) throw new Error('401|Unauthorized');
   
     const users = await user.find();
     const getUserId = await user.findOne({ email });
@@ -26,7 +26,7 @@ const OrdersMVPServices = {
     // verificando a quantidade de usuários cadastrados
     if(users.length > 100) throw new Error('429|Too many requests');
 
-    await order.create({ 
+    const result = await order.create({ 
       name,
       userId: getUserId.id,
       address,
@@ -35,6 +35,7 @@ const OrdersMVPServices = {
       orders
     })
 
+    return result
   }
 }
 
