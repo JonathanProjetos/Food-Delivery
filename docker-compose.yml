@@ -19,7 +19,7 @@ services:
     ports:
       - 3001:3001
     environment:
-      - MONGO_URI=${MONGO_DB_URL}
+      - MONGO_URI=${MONGO_URL}
     
   mongodb:
     image: mongo:5.0.7
