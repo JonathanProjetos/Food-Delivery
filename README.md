@@ -59,7 +59,7 @@ git clone git@github.com:JonathanProjetos/Food-Delivery.git
 cd Food-Delivery
 docker compose up -d
 
-obs: O proprio comando docker vai startar a aplicação.
+obs: O proprio comando docker vai instalar as dependências e startar a aplicação.
 ```
 ### Adicionar os Produtos
 - Após subir os conteiners docker, abra o terminal e rode os comandos abaixo.
@@ -71,9 +71,6 @@ npm run products:import
 ### Git, GitHub e Histórico de Commits
 Este projeto utilizou a [Especificação de Commits Convencionais](https://www.conventionalcommits.org/en/v1.0.0/), com alguns tipos da [convenção Angular](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines). Além disso, foi utilizado o pacote [conventional-commit-cli](https://www.npmjs.com/package/conventional-commit-cli) para ajudar a seguir a convenção de commits. É importante utilizar a convenção de commits em projetos para manter o histórico de commits organizado e facilitar a leitura e o entendimento do que foi desenvolvido.
 
-
-### Metodologias Ágeis
-Durante o desenvolvimento deste projeto, foram utilizadas metodologias ágeis, que são práticas que valorizam a interação e colaboração entre os membros de uma equipe de desenvolvimento, visando uma entrega mais rápida e eficiente do projeto. A utilização dessas práticas é especialmente importante em projetos em grupo, pois ajuda a manter a equipe alinhada e a evitar atrasos e retrabalhos desnecessários. Para saber mais sobre as metodologias ágeis, confira o [Manifesto Ágil](https://agilemanifesto.org/).
 
 ### Lint
 - O projeto foi desenvolvido seguindo os padrões de Clean Code especificados pelo [Lint da Trybe](https://github.com/betrybe/eslint-config-trybe).
