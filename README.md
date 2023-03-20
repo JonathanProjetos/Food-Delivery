@@ -75,7 +75,7 @@ npm run products:destroy
 - Foi realizado o deploy da aplicação no railway neste [Link](https://food-delivery-production-fba9.up.railway.app/)
 
 ### Swagger
-- Foi implementado a documentação por parte através do swagger nela possibilita de testar a aplicação de forma mais rápida e intuitiva.
+- Foi implementada a documentação por parte do Swagger, que possibilita testar a aplicação de forma mais rápida e intuitiva.
 - O link para a documentação é [DOC](https://food-delivery-production-fba9.up.railway.app/docs)
 - Alguns end-points séra necessessário oferecer o token para o Authorization no swagger. O token será disponibilizado quando foi feito o login é como resposta terá o token.
 
