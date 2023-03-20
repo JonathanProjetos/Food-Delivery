@@ -39,7 +39,7 @@ Este projeto utiliza as seguintes tecnologias e ferramentas:
 
 - [NodeJS](https://nodejs.org/en/) | Plataforma de execução runtime baseda em javascript. 
 - [MongoDB](https://www.mongodb.com/docs/) | Banco de dados NoSQL não-relacional.
-- [Moongose](https://mongoosejs.com/docs/) | ORM Object-Relational Mapping para nodejs
+- [Moongose](https://mongoosejs.com/docs/) | ODM Object-documente-Mapper para MongoDB
 - [Express](https://expressjs.com/pt-br/) | Framework web para nodejs
 
 O Node.js foi utilizado com o intuito de obter os benefícios da escalabilidade e eficiência, pois ele é capaz de lidar com vários tráfegos sem bloqueio e lida com solicitações com baixo consumo de recursos. O MongoDB foi introduzido pensando em desempenho e flexibilidade. Este conjunto proporciona uma maior facilidade de adaptação e evolução do aplicativo, sem contar também que o MongoDB trabalha com documentos no formato JSON, que é um formato nativo em algumas linguagens. O Mongoose foi implementado por ser uma biblioteca poderosa e flexível que simplifica a interação com o MongoDB e adiciona recursos úteis, como validação de dados, tratamento de relacionamentos e ganchos personalizados. O Express é um framework para o Node.js que permite construir aplicações web robustas e escaláveis de forma mais fácil e rápida.
@@ -47,37 +47,25 @@ O Node.js foi utilizado com o intuito de obter os benefícios da escalabilidade 
 ## Instalação e Execução
 ### Download do projeto
 ```
-git clone git@github.com:JonathanProjetos/App-De-Delivery.git
+git clone git@github.com:JonathanProjetos/Food-Delivery.git
 ```
-### Instalar dependências
-```
-cd App-De-Delivery
-npm install
-npm start
-
-obs: o proprio script start executará tanto o back-end quanto o front-end.
-```
-
 
 ### Arquivo evn
-- Dentro da pasta back-end existe o arquivo .env.example nele será nescessário remover o .example e oferecer a senha do seu mysql.
+- Dentro da pasta Food-Delivery existe o arquivo .env.example nele será nescessário remover o .example e oferecer a url do MongoDB,é uma senha para o Json-Web-Token.
 
 
-### Acesso cadastrado
-- customer 
+### Instalar dependências
 ```
-login: zebirita@email.com
-senha: $#zebirita#$
+cd Food-Delivery
+docker compose up -d
+
+obs: O proprio comando docker vai startar a aplicação.
 ```
-- seller
+### Adicionar os Produtos
+- Após subir os conteiners docker, abra o terminal e rode os comandos abaixo.
 ```
-login: fulana@deliveryapp.com
-senha: fulana@123
-```
-- admin
-```
-login: adm@deliveryapp.com
-senha: --adm2@21!!--
+docker exec -it food_delivery bash
+npm run products:import
 ```
 
 ### Git, GitHub e Histórico de Commits
