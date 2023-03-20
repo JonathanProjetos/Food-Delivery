@@ -1,5 +1,5 @@
 # Bem-vindo ao Food Delivery
-A API Food Delivery .
+A API Food Delivery é um e-commerce simples que oferece meios de acesso através de autenticação JWT utilizando bearer token. Nele, foi realizada a proposta de regra de negócio para definir etapas de progressão da empresa. Cada endpoint oferece o momento em que a empresa se encontra em relação à quantidade de usuários cadastrados e à quantidade de produtos por usuário em cada etapa.
 
  
 </details>
