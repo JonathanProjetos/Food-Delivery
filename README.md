@@ -21,22 +21,28 @@ O __Food Delivery__ é uma ferramenta que acessa a bases de dados, é permite ao
 - Criar novos produtos
 - Criar ordem de pedido;
 - Atualizar uma ordem de pedido;
+- Atualizar um produto
 - Deletar um pedido;
 
-__Quando logado como administrador__
-
-- É possivel cadastrar vendedores e clientes;
+__Quando logado é possivel__
+- Buscar por produtos;
+- Criar novos produtos
+- Criar ordem de pedido;
+- Atualizar uma ordem de pedido;
+- Atualizar um produto;
+- Deletar um pedido;
+- Deletar um produto;
 
 ## Tecnologias e Ferramentas Utilizadas
 
 Este projeto utiliza as seguintes tecnologias e ferramentas:
 
-- [NodeJS](https://nodejs.org/en/) | Plataforma de execução runtime baseda em javascript 
-- [Mysql](https://www.mysql.com/) | Banco de dados relacional
-- [Sequelize](https://sequelize.org/docs/v6/getting-started/) | ORM Object-Relational Mapping para nodejs
+- [NodeJS](https://nodejs.org/en/) | Plataforma de execução runtime baseda em javascript. 
+- [MongoDB](https://www.mongodb.com/docs/) | Banco de dados NoSQL não-relacional.
+- [Moongose](https://mongoosejs.com/docs/) | ORM Object-Relational Mapping para nodejs
 - [Express](https://expressjs.com/pt-br/) | Framework web para nodejs
 
-O React.js foi escolhido por ser uma das bibliotecas mais populares e amplamente utilizadas para criar interfaces de usuário. Além disso, o React.js é fácil de aprender e possui uma grande comunidade de desenvolvedores, o que torna mais fácil encontrar soluções para problemas comuns. A Context API foi utilizada para gerenciamento de estado, permitindo que informações importantes da aplicação sejam compartilhadas entre diferentes componentes, sem a necessidade de passá-las manualmente através de props. Isso torna o código mais limpo e fácil de entender. O Trello foi utilizado para gerenciamento de tarefas, seguindo metodologias ágeis durante o desenvolvimento. O Node.js foi incorporado para padronizar a linguagem tanto no front-end quanto no back-end e obter os benefícios da escalabilidade e eficiência, pois ele é capaz de lidar com vários tráfegos sem bloqueio e lida com solicitações com baixo consumo de recursos.
+O Node.js foi utilizado com o intuito de obter os benefícios da escalabilidade e eficiência, pois ele é capaz de lidar com vários tráfegos sem bloqueio e lida com solicitações com baixo consumo de recursos. O MongoDB foi introduzido pensando em desempenho e flexibilidade. Este conjunto proporciona uma maior facilidade de adaptação e evolução do aplicativo, sem contar também que o MongoDB trabalha com documentos no formato JSON, que é um formato nativo em algumas linguagens. O Mongoose foi implementado por ser uma biblioteca poderosa e flexível que simplifica a interação com o MongoDB e adiciona recursos úteis, como validação de dados, tratamento de relacionamentos e ganchos personalizados. O Express é um framework para o Node.js que permite construir aplicações web robustas e escaláveis de forma mais fácil e rápida.
 
 ## Instalação e Execução
 ### Download do projeto
