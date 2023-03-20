@@ -5,7 +5,7 @@ A API Food Delivery .
 </details>
 
 ## Sumário
-- [Bem-vindo ao App de delivery](#Bem-vindo-ao-Food-Delivery)
+- [Bem-vindo ao Food Delivery](#Bem-vindo-ao-Food-Delivery)
 - [Contexto](#contexto)
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
