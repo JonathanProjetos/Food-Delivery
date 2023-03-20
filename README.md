@@ -17,17 +17,17 @@ A API Food Delivery .
 ## Contexto
 O __Food Delivery__ é uma ferramenta que acessa a bases de dados, é permite aos usuários:
 - Fazer login;
-- Cadastrar um novo usuário
+- Cadastrar um novo usuário;
 - Buscar por produtos;
-- Criar novos produtos
+- Criar novos produtos;
 - Criar ordem de pedido;
 - Atualizar uma ordem de pedido;
-- Atualizar um produto
+- Atualizar um produto;
 - Deletar um pedido;
 
 __Quando logado é possivel__
 - Buscar por produtos;
-- Criar novos produtos
+- Criar novos produtos;
 - Criar ordem de pedido;
 - Atualizar uma ordem de pedido;
 - Atualizar um produto;
