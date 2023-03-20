@@ -66,6 +66,9 @@ obs: O proprio comando docker vai instalar as dependências e startar a aplicaç
 ```
 docker exec -it food_delivery bash
 npm run products:import
+
+obs: Caso queira remover os produtos rode:
+npm run products:destroy
 ```
 
 ### Git, GitHub e Histórico de Commits
