@@ -10,7 +10,7 @@ A API Food Delivery .
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
 - [Deploy](#Deploy)
-- [Sawagger](#Swagger)
+- [Swagger](#Swagger)
 - [Git, GitHub e Histórico de Commits](#git-github-e-histórico-de-commits)
 - [Lint](#lint)
 
