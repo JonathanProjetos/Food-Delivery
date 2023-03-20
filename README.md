@@ -69,6 +69,12 @@ npm run products:import
 obs: Caso queira remover os produtos rode:
 npm run products:destroy
 ```
+### Deploy
+- Foi realizado o deploy da aplicação no railway neste [Link](https://food-delivery-production-fba9.up.railway.app/)
+
+### Swagger
+- Foi implementado a documentação por parte através do swagger nela possibilita de testar a aplicação de forma mais rápida e intuitiva.
+- O link para a documentação é [DOC](https://food-delivery-production-fba9.up.railway.app/docs)
 
 ### Git, GitHub e Histórico de Commits
 Este projeto utilizou a [Especificação de Commits Convencionais](https://www.conventionalcommits.org/en/v1.0.0/), com alguns tipos da [convenção Angular](https://github.com/angular/angular/blob/22b96b9/CONTRIBUTING.md#-commit-message-guidelines). Além disso, foi utilizado o pacote [conventional-commit-cli](https://www.npmjs.com/package/conventional-commit-cli) para ajudar a seguir a convenção de commits. É importante utilizar a convenção de commits em projetos para manter o histórico de commits organizado e facilitar a leitura e o entendimento do que foi desenvolvido.
