@@ -9,8 +9,10 @@ A API Food Delivery .
 - [Contexto](#contexto)
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
- - [Git, GitHub e Histórico de Commits](#git-github-e-histórico-de-commits)
- - [Lint](#lint)
+- [Deploy](#Deploy)
+- [Sawagger](#Swagger)
+- [Git, GitHub e Histórico de Commits](#git-github-e-histórico-de-commits)
+- [Lint](#lint)
 
 ## Contexto
 O __Food Delivery__ é uma ferramenta que acessa a bases de dados, é permite aos usuários:
