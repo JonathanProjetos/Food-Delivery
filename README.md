@@ -6,7 +6,6 @@ A API Food Delivery .
 
 ## Sumário
 - [Bem-vindo ao App de delivery](#Bem-vindo-ao-Food-Delivery)
-- [Preview](#preview)
 - [Contexto](#contexto)
 - [Tecnologias e Ferramentas Utilizadas](#tecnologias-e-ferramentas-utilizadas)
 - [Instalação e Execução](#instalação-e-execução)
