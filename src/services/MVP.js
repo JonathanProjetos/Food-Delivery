@@ -48,6 +48,23 @@ const OrdersMVPServices = {
 
     return getOrder;
   },
+  
+  deleteOrder: async ({ email, id }) => {
+    const getUserId = await user.findOne({ email });
+  
+    if (!getUserId) throw new Error('404|User not found');
+
+    const getOrderForId = await order.findOne({ userId: getUserId.id });
+
+    if (!getOrderForId) throw new Error('404|Order not found');
+
+    if(getOrderForId.userId !== id) throw new Error('401|Unauthorized');
+
+    const deleteOrder = await order.deleteOne({ userId: getUserId.id });
+
+    return deleteOrder;
+  },
+
 
 }
 
