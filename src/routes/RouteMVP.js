@@ -4,6 +4,7 @@ const checkToken = require('../middlewares/checkToken');
 
 const MVPRoute = Router();
 
-MVPRoute.post('/mvp/orders', checkToken.verifyToken, ordersMVPControllers.create);
+MVPRoute.post('/mvp/order', checkToken.verifyToken, ordersMVPControllers.create);
+MVPRoute.get('/mvp/order', checkToken.verifyToken, ordersMVPControllers.getOrders);
 
 module.exports = MVPRoute;
