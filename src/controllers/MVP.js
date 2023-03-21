@@ -31,6 +31,16 @@ const ordersMVPController = {
     const deleteProductOrder = await MVPServices.deleteProductOrder({ email, productId });
     res.status(200).json(deleteProductOrder);
   },
+
+  updateOrder: async (req, res) => {
+    const { email } = req.email;
+    const { id } = req.params;
+    const { body } = req;
+
+    const updateOrder = await MVPServices.updateOrder(body, id, email);
+    res.status(200).json(updateOrder);
+  },
+
   
 
 }
