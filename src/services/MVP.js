@@ -36,7 +36,19 @@ const OrdersMVPServices = {
     })
 
     return result
-  }
+  },
+
+  getOrders: async (email) => {
+
+    const getUserId = await user.findOne({ email });
+
+    if (!getUserId) throw new Error('404|User not found');
+
+    const getOrder = await order.find({ userId: getUserId.id });
+
+    return getOrder;
+  },
+
 }
 
 
