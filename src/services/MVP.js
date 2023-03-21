@@ -48,7 +48,7 @@ const OrdersMVPServices = {
 
     return getOrder;
   },
-  
+
   deleteOrder: async ({ email, id }) => {
     const getUserId = await user.findOne({ email });
   
@@ -64,6 +64,24 @@ const OrdersMVPServices = {
 
     return deleteOrder;
   },
+
+  deleteProductOrder: async ({ email, productId }) => {
+    const getUser = await user.findOne({ email });
+  
+    if (!getUser) throw new Error('404|User not found');
+
+    const getOrderForId = await order.findOne({ userId: getUser.id });
+
+    if (!getOrderForId) throw new Error('404|Order not found');
+
+    const itemDestroy = await order.findOneAndUpdate(
+      { userId: getOrderForId.userId}, 
+      { $pull: { orders: { _id: productId } } }, 
+      { new: true} );
+
+    return itemDestroy;
+  },
+
 
 
 }
