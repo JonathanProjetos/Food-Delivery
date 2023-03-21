@@ -81,7 +81,7 @@ const OrdersMVPServices = {
 
     return itemDestroy;
   },
-  
+
   updateOrder: async (body, id ,email) => {
 
     checkQuantityItems.bodyMVP(body.orders);
@@ -101,6 +101,27 @@ const OrdersMVPServices = {
     return updateData;
   },
 
+  updateProductOrder: async (body, id, email) => {
+
+    console.log(body, id, email);
+    if(!email) throw new Error('401|Unauthorized');
+
+    const getUser = await user.findOne({ email });
+  
+    if (!getUser) throw new Error('404|User not found');
+
+    const getOrderForId = await order.findOne({ userId: getUser.id });
+
+    if (!getOrderForId) throw new Error('404|Order not found');
+
+    const updateData = await order.findOneAndUpdate(
+      { userId: getOrderForId.userId, 'orders._id': id },
+      { $set: { 'orders.$': { ...body } }},
+      { new: true }
+    )
+
+    return updateData;
+  }
 
 }
 
