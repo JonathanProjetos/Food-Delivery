@@ -26,6 +26,7 @@ O __Food Delivery__ é uma ferramenta que acessa a bases de dados, é permite ao
 - Atualizar uma ordem de pedido;
 - Atualizar um produto;
 - Deletar um pedido;
+- Deletar um produto;
 
 __Quando logado é possivel__
 - Buscar por produtos;
