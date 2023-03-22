@@ -322,7 +322,7 @@
       }
     },
 
-    "/mvp/orders" : {
+    "/mvp/order" : {
       "post": {
         "summary": "Criação de pedidos",
         "description": "Este end point estará disponivel quando estiver com limite no máximo de 100 pessoas usuárias cadastradas no banco de dados, é um total de 5 produtos sendo pela variedade ou pela quantidade.",
