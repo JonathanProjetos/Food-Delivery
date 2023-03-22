@@ -9,5 +9,6 @@ MVPRoute.get('/mvp/order', checkToken.verifyToken, ordersMVPControllers.getOrder
 MVPRoute.delete('/mvp/order/:id', checkToken.verifyToken, ordersMVPControllers.deleteOrder);
 MVPRoute.delete('/mvp/order/product/:id', checkToken.verifyToken, ordersMVPControllers.deleteProductOrder);
 MVPRoute.put('/mvp/order/:id', checkToken.verifyToken, ordersMVPControllers.updateOrder);
+MVPRoute.patch('/mvp/order/product/:id', checkToken.verifyToken, ordersMVPControllers.updateProductOrder);
 
 module.exports = MVPRoute;
