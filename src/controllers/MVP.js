@@ -41,7 +41,14 @@ const ordersMVPController = {
     res.status(200).json(updateOrder);
   },
 
-  
+  updateProductOrder: async (req, res) => {
+    const { email } = req.email;
+    const { id } = req.params;
+    const { body } = req;
+
+    const updateProductOrder = await MVPServices.updateProductOrder(body, id, email);
+    res.status(200).json(updateProductOrder);
+  }
 
 }
 
