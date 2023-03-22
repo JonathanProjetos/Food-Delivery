@@ -1,4 +1,4 @@
-const token = require('../middlewares/token');
+const token = require('./token');
 
 module.exports = {
   verifyToken: (req, _res, next) => {
@@ -7,9 +7,9 @@ module.exports = {
       const filterBearerSwagger = authorization.split(' ').pop('Bearer');
       const dados = token.validateToken(filterBearerSwagger);
       req.email = dados;
-      next();  
+      next();
     } catch (err) {
-      console.error(err)
+      console.error(err);
       throw new Error('404|Token not found');
     }
   },

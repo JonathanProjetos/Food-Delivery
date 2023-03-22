@@ -26,7 +26,7 @@ const ordersMVPController = {
     const { email } = req.email;
     const { id } = req.params;
 
-    const productId = id
+    const productId = id;
 
     const deleteProductOrder = await MVPServices.deleteProductOrder({ email, productId });
     res.status(200).json(deleteProductOrder);
@@ -48,8 +48,8 @@ const ordersMVPController = {
 
     const updateProductOrder = await MVPServices.updateProductOrder(body, id, email);
     res.status(200).json(updateProductOrder);
-  }
+  },
 
-}
+};
 
 module.exports = ordersMVPController;

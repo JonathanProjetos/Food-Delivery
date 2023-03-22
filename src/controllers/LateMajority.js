@@ -7,8 +7,8 @@ const ordersLateMajorityController = {
 
     const newOrder = await lateMajority.create({ ...body, email });
     res.status(200).json(newOrder);
-  }
+  },
 
-}
+};
 
 module.exports = ordersLateMajorityController;
