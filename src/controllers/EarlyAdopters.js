@@ -22,6 +22,16 @@ const ordersEarlyAdoptersController = {
     res.status(200).json(deleteOrder);
   },
 
+  deleteProductOrder: async (req, res) => {
+    const { email } = req.email;
+    const { id } = req.params;
+
+    const productId = id;
+
+    const deleteProductOrder = await earlyAdopters.deleteProductOrder({ email, productId });
+    res.status(200).json(deleteProductOrder);
+  },
+
 };
 
 module.exports = ordersEarlyAdoptersController;
