@@ -496,7 +496,7 @@
 
     "/mvp/order/{id}":{ 
       "delete": {
-        "summary": "Deletar um pedido",
+        "summary": "Deleta um pedido",
         "description": "Este endpoint deleta um pedido pertencente a pessoa que estiver logada",
         "security": [{ "bearerAuth": [] }],
         "tags": [
@@ -553,6 +553,177 @@
           },
           "401": {
             "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary": "Atualiza um pedido",
+        "description": "Este endpoint atualiza um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/MVP"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+
+        "requestBody": {
+          "description": "Atualiza um pedido",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              },
+              "example": {
+                "name": "jhon",
+                "address": "rua 1",
+                "phone": "123456789",
+                "methodPayment": "dinheiro",
+                "orders": [
+                  {
+                    "name": "pizza",
+                    "price": 10,
+                    "quantity": 1
+                  },
+                  {
+                    "name": "refrigerante",
+                    "price": 5,
+                    "quantity": 1
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Atualizado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/mvp/order/product/{id}":{ 
+      "delete": {
+        "summary": "Deleta um produto do pedido",
+        "description": "Este endpoint deleta um produto de um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/MVP"
+        ],
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do produto",
+            "required": true
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Deletado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
             "content":{
               "application/json":{
                 "schema":{
@@ -968,6 +1139,41 @@
           },
           "deletedCount": {
             "type": "integer"
+          }
+        }
+      },
+
+      "updateOrder": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "methodPayment": {
+            "type": "string"
+          },
+          "orders": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "price": {
+                  "type": "number"
+                },
+                "quantity": {
+                  "type": "integer"
+                }
+              }
+            }
           }
         }
       }
