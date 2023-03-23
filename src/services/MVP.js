@@ -69,17 +69,14 @@ const OrdersMVPServices = {
 
     if (!getUser) throw new Error('404|User not found');
 
-    const getOrderForId = await order.findOne({ userId: getUser.id });
-
-    if (!getOrderForId) throw new Error('404|Order not found');
-
-    const itemDestroy = await order.findOneAndUpdate(
-      { userId: getOrderForId.userId },
+    const result = await order.updateMany(
+      { userId: getUser.id },
       { $pull: { orders: { _id: productId } } },
-      { new: true },
     );
 
-    return itemDestroy;
+    if (result.nModified === 0) throw new Error('404|Product not found');
+
+    return { message: 'Product deleted' };
   },
 
   updateOrder: async (body, id, email) => {
@@ -101,11 +98,9 @@ const OrdersMVPServices = {
   },
 
   updateProductOrder: async (body, id, email) => {
-    if (!email) throw new Error('401|Unauthorized');
-
     const getUser = await user.findOne({ email });
 
-    if (!getUser) throw new Error('404|User not found');
+    if (!getUser) throw new Error('401|Unauthorized');
 
     const getOrderForId = await order.findOne({ userId: getUser.id });
 
