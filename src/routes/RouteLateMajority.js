@@ -9,5 +9,6 @@ LateMajorityRoute.get('/lateMajority/order', checkToken.verifyToken, ordersLateM
 LateMajorityRoute.delete('/lateMajority/order/:id', checkToken.verifyToken, ordersLateMajorityControllers.deleteOrder);
 LateMajorityRoute.delete('/lateMajority/order/product/:id', checkToken.verifyToken, ordersLateMajorityControllers.deleteProductOrder);
 LateMajorityRoute.put('/lateMajority/order/:id', checkToken.verifyToken, ordersLateMajorityControllers.updateOrder);
+LateMajorityRoute.patch('/lateMajority/order/product/:id', checkToken.verifyToken, ordersLateMajorityControllers.updateProductOrder);
 
 module.exports = LateMajorityRoute;
