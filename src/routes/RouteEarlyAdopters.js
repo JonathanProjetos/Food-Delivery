@@ -9,4 +9,6 @@ EarlyAdoptersRoute.get('/earlyAdopters/order', checkToken.verifyToken, ordersEar
 EarlyAdoptersRoute.delete('/earlyAdopters/order/:id', checkToken.verifyToken, ordersEarlyAdoptersControllers.deleteOrder);
 EarlyAdoptersRoute.delete('/earlyAdopters/order/product/:id', checkToken.verifyToken, ordersEarlyAdoptersControllers.deleteProductOrder);
 EarlyAdoptersRoute.put('/earlyAdopters/order/:id', checkToken.verifyToken, ordersEarlyAdoptersControllers.updateOrder);
+EarlyAdoptersRoute.patch('/earlyAdopters/order/product/:id', checkToken.verifyToken, ordersEarlyAdoptersControllers.updateProductOrder);
+
 module.exports = EarlyAdoptersRoute;
