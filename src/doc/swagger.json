@@ -179,7 +179,7 @@
       }
     },
 
-    "/products" :{
+    "/products": {
       "get": {
         "summary": "Listagem de produtos",
         "description": "Listagem de todos os produtos é nescessário logar e oferecer o token para autenticação",
@@ -322,7 +322,7 @@
       }
     },
 
-    "/mvp/order" : {
+    "/mvp/order": {
       "post": {
         "summary": "Criação de pedidos",
         "description": "Este end point estará disponivel quando estiver com limite no máximo de 100 pessoas usuárias cadastradas no banco de dados, é um total de 5 produtos sendo pela variedade ou pela quantidade.",
@@ -494,7 +494,7 @@
       }
     },
 
-    "/mvp/order/{id}":{ 
+    "/mvp/order/{id}": { 
       "delete": {
         "summary": "Deleta um pedido",
         "description": "Este endpoint deleta um pedido pertencente a pessoa que estiver logada",
@@ -674,7 +674,7 @@
       }
     },
 
-    "/mvp/order/product/{id}":{ 
+    "/mvp/order/product/{id}": { 
       "delete": {
         "summary": "Deleta um produto do pedido",
         "description": "Este endpoint deleta um produto de um pedido pertencente a pessoa que estiver logada",
@@ -724,6 +724,100 @@
 
           "404": {
             "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch":{
+        "summary": "Atualiza um produto do pedido",
+        "description": "Este endpoint atualiza um produto do pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/MVP"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do produto",
+            "required": true
+          }
+        ],
+
+        "requestBody": {
+          "description": "Atualiza um pedido",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              },
+              "example": {
+                "name": "chocolate",
+                "price": 200,
+                "description": "meio amargo"
+              }
+            }
+          },
+          "required": true
+        },
+
+        "responses": {
+          "200": {
+            "description": "Produto atualizado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "items": {
+                    "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Order not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
             "content":{
               "application/json":{
                 "schema":{
