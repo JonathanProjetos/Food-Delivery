@@ -57,7 +57,7 @@ const OrdersMVPServices = {
       { _id: id },
     );
 
-    if (getOrderForId.userId === undefined) throw new Error('404|Order not found');
+    if (!getOrderForId) throw new Error('404|Order not found');
 
     const deleteOrder = await order.deleteOne({ _id: getOrderForId.id });
 
