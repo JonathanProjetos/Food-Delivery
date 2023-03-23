@@ -4,6 +4,7 @@ const checkToken = require('../middlewares/checkToken');
 
 const LateMajorityRoute = Router();
 
-LateMajorityRoute.post('/lateMajority/orders', checkToken.verifyToken, ordersLateMajorityControllers.create);
+LateMajorityRoute.post('/lateMajority/order', checkToken.verifyToken, ordersLateMajorityControllers.create);
+LateMajorityRoute.get('/lateMajority/order', checkToken.verifyToken, ordersLateMajorityControllers.getOrders);
 
 module.exports = LateMajorityRoute;
