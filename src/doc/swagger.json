@@ -494,6 +494,82 @@
       }
     },
 
+    "/mvp/order/{id}":{ 
+      "delete": {
+        "summary": "Deletar um pedido",
+        "description": "Este endpoint deleta um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/MVP"
+        ],
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/DeleteOrderResponse"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
     "/earlyAdopters/orders" : {
       "post": {
         "summary": "Criação de pedidos",
