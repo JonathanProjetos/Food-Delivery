@@ -32,6 +32,15 @@ const ordersEarlyMajorityController = {
     res.status(200).json(deleteProductOrder);
   },
 
+  updateOrder: async (req, res) => {
+    const { email } = req.email;
+    const { id } = req.params;
+    const { body } = req;
+
+    const updateOrder = await earlyMajority.updateOrder(body, id, email);
+    res.status(200).json(updateOrder);
+  },
+
 };
 
 module.exports = ordersEarlyMajorityController;
