@@ -835,13 +835,13 @@
       }
     },
 
-    "/earlyAdopters/orders" : {
+    "/earlyAdopters/order" : {
       "post": {
         "summary": "Criação de pedidos",
         "description": "Este end point estará disponivel quando estiver com limite no máximo de 10000 pessoas usuárias cadastradas no banco de dados, e um total de 15 produtos sendo pela variedade ou pela quantidade.",
         "security": [{ "bearerAuth": [] }],
         "tags": [
-          "Orders"
+          "Orders/Early Adopters"
         ],
 
         "requestBody": {
@@ -946,6 +946,63 @@
             }
           }     
         }
+      },
+      "get": {
+        "summary": "Listagem de pedidos",
+        "description": "Este end point lista todos os pedidos de quem estiver logado",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Early Adopters"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+
+        "responses":{
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
       }
     },
 
