@@ -59,6 +59,21 @@ const OrdersLateMajorityServices = {
 
     return deleteOrder;
   },
+
+  deleteProductOrder: async ({ email, productId }) => {
+    const getUser = await user.findOne({ email });
+
+    if (!getUser) throw new Error('404|User not found');
+
+    const result = await order.updateMany(
+      { userId: getUser.id },
+      { $pull: { orders: { _id: productId } } },
+    );
+
+    if (result.nModified === 0) throw new Error('404|Product not found');
+
+    return { message: 'Product deleted' };
+  },
 };
 
 module.exports = OrdersLateMajorityServices;
