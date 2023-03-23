@@ -36,6 +36,16 @@ const OrdersEarlyMajorityServices = {
 
     return result;
   },
+
+  getOrders: async (email) => {
+    const getUser = await user.findOne({ email });
+
+    if (!getUser) throw new Error('404|User not found');
+
+    const getOrder = await order.find({ userId: getUser.id });
+
+    return getOrder;
+  },
 };
 
 module.exports = OrdersEarlyMajorityServices;
