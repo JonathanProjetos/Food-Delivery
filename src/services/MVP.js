@@ -20,14 +20,14 @@ const OrdersMVPServices = {
     if (!email) throw new Error('401|Unauthorized');
 
     const users = await user.find();
-    const getUserId = await user.findOne({ email });
+    const getUser = await user.findOne({ email });
 
     // verificando a quantidade de usuários cadastrados
     if (users.length > 100) throw new Error('429|Too many requests');
 
     const result = await order.create({
       name,
-      userId: getUserId.id,
+      userId: getUser.id,
       address,
       phone,
       methodPayment,
@@ -38,27 +38,28 @@ const OrdersMVPServices = {
   },
 
   getOrders: async (email) => {
-    const getUserId = await user.findOne({ email });
+    const getUser = await user.findOne({ email });
 
-    if (!getUserId) throw new Error('404|User not found');
+    if (!getUser) throw new Error('404|User not found');
 
-    const getOrder = await order.find({ userId: getUserId.id });
+    const getOrder = await order.find({ userId: getUser.id });
 
     return getOrder;
   },
 
   deleteOrder: async ({ email, id }) => {
-    const getUserId = await user.findOne({ email });
+    const getUser = await user.findOne({ email });
 
-    if (!getUserId) throw new Error('404|User not found');
+    if (!getUser) throw new Error('404|User not found');
 
-    const getOrderForId = await order.findOne({ userId: getUserId.id });
+    const getOrderForId = await order.findOne(
+      { userId: getUser.id },
+      { _id: id },
+    );
 
-    if (!getOrderForId) throw new Error('404|Order not found');
+    if (getOrderForId.userId === undefined) throw new Error('404|Order not found');
 
-    if (getOrderForId.userId !== id) throw new Error('401|Unauthorized');
-
-    const deleteOrder = await order.deleteOne({ userId: getUserId.id });
+    const deleteOrder = await order.deleteOne({ _id: getOrderForId.id });
 
     return deleteOrder;
   },
