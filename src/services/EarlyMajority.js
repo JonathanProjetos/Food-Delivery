@@ -97,6 +97,24 @@ const OrdersEarlyMajorityServices = {
     return updateData;
   },
 
+  updateProductOrder: async (body, id, email) => {
+    const getUser = await user.findOne({ email });
+
+    if (!getUser) throw new Error('401|Unauthorized');
+
+    const getOrderForId = await order.findOne({ userId: getUser.id });
+
+    if (!getOrderForId) throw new Error('404|Order not found');
+
+    const updateData = await order.findOneAndUpdate(
+      { userId: getOrderForId.userId, 'orders._id': id },
+      { $set: { 'orders.$': { ...body } } },
+      { new: true },
+    );
+
+    return updateData;
+  },
+
 };
 
 module.exports = OrdersEarlyMajorityServices;
