@@ -1,4 +1,4 @@
-- 22/03/2023 Os endpoints para atualizar é deletar de earlyMajority é lateMajority estão sendo desenvolvidos.
+- 23/03/2023 Será implementado validações para todos os dados recebidos pelo corpo das requisições.
 
 # Bem-vindo ao Food Delivery
 A API Food Delivery é um e-commerce simples que oferece meios de acesso através de autenticação JWT utilizando bearer token. Nele, foi realizada a proposta de regra de negócio para definir etapas de progressão da empresa. Cada endpoint oferece o momento em que a empresa se encontra em relação à quantidade de usuários cadastrados e à quantidade de produtos por usuário em cada etapa. A API também conta com uma documentação interna feita com o Swagger, que traz facilidade e rapidez ao acesso dos endpoints da aplicação.
