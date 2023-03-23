@@ -79,6 +79,24 @@ const OrdersEarlyMajorityServices = {
     return { message: 'Product deleted' };
   },
 
+  updateOrder: async (body, id, email) => {
+    checkQuantityItems.bodyMVP(body.orders);
+
+    if (!email) throw new Error('401|Unauthorized');
+
+    const getUser = await user.findOne({ email });
+
+    if (!getUser) throw new Error('404|User not found');
+
+    const updateData = await order.findOneAndUpdate(
+      { _id: id },
+      { $set: { ...body } },
+      { new: true },
+    );
+
+    return updateData;
+  },
+
 };
 
 module.exports = OrdersEarlyMajorityServices;
