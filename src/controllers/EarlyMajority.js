@@ -9,6 +9,12 @@ const ordersEarlyMajorityController = {
     res.status(200).json(newOrder);
   },
 
+  getOrders: async (req, res) => {
+    const { email } = req.email;
+    const getOrder = await earlyMajority.getOrders(email);
+    res.status(200).json(getOrder);
+  },
+
 };
 
 module.exports = ordersEarlyMajorityController;
