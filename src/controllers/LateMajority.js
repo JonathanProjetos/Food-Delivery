@@ -15,7 +15,12 @@ const ordersLateMajorityController = {
     res.status(200).json(getOrder);
   },
 
-
+  deleteOrder: async (req, res) => {
+    const { email } = req.email;
+    const { id } = req.params;
+    const deleteOrder = await lateMajority.deleteOrder({ email, id });
+    res.status(200).json(deleteOrder);
+  },
 };
 
 module.exports = ordersLateMajorityController;
