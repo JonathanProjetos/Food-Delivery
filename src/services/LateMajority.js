@@ -42,6 +42,23 @@ const OrdersLateMajorityServices = {
 
     return getOrder;
   },
+
+  deleteOrder: async ({ email, id }) => {
+    const getUser = await user.findOne({ email });
+
+    if (!getUser) throw new Error('404|User not found');
+
+    const getOrderForId = await order.findOne(
+      { userId: getUser.id },
+      { _id: id },
+    );
+
+    if (!getOrderForId) throw new Error('404|Order not found');
+
+    const deleteOrder = await order.deleteOne({ _id: getOrderForId.id });
+
+    return deleteOrder;
+  },
 };
 
 module.exports = OrdersLateMajorityServices;
