@@ -5,6 +5,7 @@
     "version": "1.0.0",
     "description": "Nesta API é possível autenticar, buscar e inserir dados conforme alguns critérios, sendo eles: limite de produtos, que alterna conforme o endpoint, e a quantidade de usuários cadastrados no banco."
   },
+  
   "paths" : {
     "/login": {
       "post": {
@@ -1347,13 +1348,13 @@
       }
     },
 
-    "/earlyMajority/orders" : {
+    "/earlyMajority/order" : {
       "post": {
         "summary": "Criação de pedidos",
         "description": "Este end point estará disponivel quando estiver com limite no máximo de 1000000 pessoas usuárias cadastradas no banco de dados, e um total de 20 produtos sendo pela variedade ou pela quantidade.",
         "security": [{ "bearerAuth": [] }],
         "tags": [
-          "Orders"
+          "Orders/Early Majority"
         ],
 
         "requestBody": {
@@ -1457,16 +1458,414 @@
             }
           }    
         }
+      },
+      "get": {
+        "summary": "Listagem de pedidos",
+        "description": "Este end point lista todos os pedidos de quem estiver logado",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Early Majority"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+
+        "responses":{
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
       }
     },
 
-    "/lateMajority/orders" : {
+    "/earlyMajority/order/{id}": { 
+      "delete": {
+        "summary": "Deleta um pedido",
+        "description": "Este endpoint deleta um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Early Majority"
+        ],
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/DeleteOrderResponse"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary": "Atualiza um pedido",
+        "description": "Este endpoint atualiza um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Early Majority"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+
+        "requestBody": {
+          "description": "Atualiza um pedido",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              },
+              "example": {
+                "name": "jhon",
+                "address": "rua 1",
+                "phone": "123456789",
+                "methodPayment": "dinheiro",
+                "orders": [
+                  {
+                    "name": "pizza",
+                    "price": 10,
+                    "quantity": 1
+                  },
+                  {
+                    "name": "refrigerante",
+                    "price": 5,
+                    "quantity": 1
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Atualizado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/earlyMajority/order/product/{id}": { 
+      "delete": {
+        "summary": "Deleta um produto do pedido",
+        "description": "Este endpoint deleta um produto de um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Early Majority"
+        ],
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do produto",
+            "required": true
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Deletado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch":{
+        "summary": "Atualiza um produto do pedido",
+        "description": "Este endpoint atualiza um produto do pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Early Majority"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do produto",
+            "required": true
+          }
+        ],
+
+        "requestBody": {
+          "description": "Atualiza um pedido",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              },
+              "example": {
+                "name": "chocolate",
+                "price": 200,
+                "description": "meio amargo"
+              }
+            }
+          },
+          "required": true
+        },
+
+        "responses": {
+          "200": {
+            "description": "Produto atualizado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "items": {
+                    "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Order not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/lateMajority/order" : {
       "post": {
         "summary": "Criação de pedidos",
         "description": "Este endpoint exemplifica a plenitude da capacidade da API. Nela, não é estabelecido limite de itens, quantidade ou pessoas cadastradas no banco.",
         "security": [{ "bearerAuth": [] }],
         "tags": [
-          "Orders"
+          "Orders/Late Majority"
         ],
 
         "requestBody": {
@@ -1554,6 +1953,404 @@
               }
             }
           }     
+        }
+      },
+      "get": {
+        "summary": "Listagem de pedidos",
+        "description": "Este end point lista todos os pedidos de quem estiver logado",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Late Majority"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+
+        "responses":{
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      }
+    },
+
+    "/lateMajority/order/{id}": { 
+      "delete": {
+        "summary": "Deleta um pedido",
+        "description": "Este endpoint deleta um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Late Majority"
+        ],
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/DeleteOrderResponse"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "put":{
+        "summary": "Atualiza um pedido",
+        "description": "Este endpoint atualiza um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Late Majority"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do pedido",
+            "required": true
+          }
+        ],
+
+        "requestBody": {
+          "description": "Atualiza um pedido",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              },
+              "example": {
+                "name": "jhon",
+                "address": "rua 1",
+                "phone": "123456789",
+                "methodPayment": "dinheiro",
+                "orders": [
+                  {
+                    "name": "pizza",
+                    "price": 10,
+                    "quantity": 1
+                  },
+                  {
+                    "name": "refrigerante",
+                    "price": 5,
+                    "quantity": 1
+                  }
+                ]
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Atualizado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "$ref": "#/components/schemas/Orders"
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+
+    "/lateMajority/order/product/{id}": { 
+      "delete": {
+        "summary": "Deleta um produto do pedido",
+        "description": "Este endpoint deleta um produto de um pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Late Majority"
+        ],
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Id do produto",
+            "required": true
+          }
+        ],
+
+        "responses": {
+          "200": {
+            "description": "Deletado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "patch":{
+        "summary": "Atualiza um produto do pedido",
+        "description": "Este endpoint atualiza um produto do pedido pertencente a pessoa que estiver logada",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/Late Majority"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+            
+              }
+            }
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "id do produto",
+            "required": true
+          }
+        ],
+
+        "requestBody": {
+          "description": "Atualiza um pedido",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Orders"
+              },
+              "example": {
+                "name": "chocolate",
+                "price": 200,
+                "description": "meio amargo"
+              }
+            }
+          },
+          "required": true
+        },
+
+        "responses": {
+          "200": {
+            "description": "Produto atualizado com sucesso.",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "items": {
+                    "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "Order not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
         }
       }
     }
