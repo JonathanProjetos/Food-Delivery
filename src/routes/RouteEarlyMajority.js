@@ -9,5 +9,6 @@ EarlyMajorityRoute.get('/earlyMajority/order', checkToken.verifyToken, ordersEar
 EarlyMajorityRoute.delete('/earlyMajority/order/:id', checkToken.verifyToken, ordersEarlyMajorityControllers.deleteOrder);
 EarlyMajorityRoute.delete('/earlyMajority/order/product/:id', checkToken.verifyToken, ordersEarlyMajorityControllers.deleteProductOrder);
 EarlyMajorityRoute.put('/earlyMajority/order/:id', checkToken.verifyToken, ordersEarlyMajorityControllers.updateOrder);
+EarlyMajorityRoute.patch('/earlyMajority/order/product/:id', checkToken.verifyToken, ordersEarlyMajorityControllers.updateProductOrder);
 
 module.exports = EarlyMajorityRoute;
