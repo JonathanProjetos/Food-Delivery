@@ -328,7 +328,7 @@
         "description": "Este end point estará disponivel quando estiver com limite no máximo de 100 pessoas usuárias cadastradas no banco de dados, é um total de 5 produtos sendo pela variedade ou pela quantidade.",
         "security": [{ "bearerAuth": [] }],
         "tags": [
-          "Orders"
+          "Orders/MVP"
         ],
 
         "requestBody": {
@@ -433,6 +433,64 @@
             }
           }
         }
+      },
+
+      "get": {
+        "summary": "Listagem de pedidos",
+        "description": "Este end point lista todos os pedidos de quem estiver logado",
+        "security": [{ "bearerAuth": [] }],
+        "tags": [
+          "Orders/MVP"
+        ],
+
+        "parameters":[
+          {
+            "name": "token",
+            "in": "header",
+            "description": "Token de acesso",
+            "required": true,
+            "schema": {
+              "properties": {
+                "authorization": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+
+        "responses":{
+          "200": {
+            "description": "OK",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Orders"
+                  }
+                }
+              }
+            }
+          },
+
+          "404": {
+            "description": "User not found",
+            "content":{
+              "application/json":{
+                "schema":{
+                  "type": "object",
+                  "properties": {
+                    "menssage": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+
       }
     },
 
@@ -822,6 +880,18 @@
                 }
               }
             }
+          }
+        }
+      },
+
+      "DeleteOrderResponse": {
+        "type": "object",
+        "properties": {
+          "acknowledged": {
+            "type": "boolean"
+          },
+          "deletedCount": {
+            "type": "integer"
           }
         }
       }
