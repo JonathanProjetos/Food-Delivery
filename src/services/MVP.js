@@ -1,18 +1,19 @@
 const order = require('../models/orderModel');
 const user = require('../models/userModel');
 const checkQuantityItems = require('../middlewares/checkQuantityItems');
+const joiCheckBodyOrder = require('../middlewares/joiBodyOrder');
 
 const OrdersMVPServices = {
 
-  create: async (body) => {
+  create: async ({ body, email }) => {
+    const data = joiCheckBodyOrder(body);
     const {
       name,
       address,
       phone,
       methodPayment,
-      email,
       orders,
-    } = body;
+    } = data;
 
     // verificando se a quantidade de itens é maior que 5
     checkQuantityItems.bodyMVP(orders);
@@ -80,7 +81,9 @@ const OrdersMVPServices = {
   },
 
   updateOrder: async (body, id, email) => {
-    checkQuantityItems.bodyMVP(body.orders);
+    const data = joiCheckBodyOrder(body);
+
+    checkQuantityItems.bodyMVP(data.orders);
 
     if (!email) throw new Error('401|Unauthorized');
 
@@ -90,7 +93,7 @@ const OrdersMVPServices = {
 
     const updateData = await order.findOneAndUpdate(
       { _id: id },
-      { $set: { ...body } },
+      { $set: { ...data } },
       { new: true },
     );
 
