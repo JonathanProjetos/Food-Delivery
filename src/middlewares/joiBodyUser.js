@@ -3,7 +3,7 @@ const Joi = require('joi');
 const validateUser = (dados) => {
   const userSchema = Joi.object({
     email: Joi.string().required().email().messages({
-      'string.empty': '400|O campo "email" é obrigatório',
+      'string.empty': '400|O campo "email" não pode ser vazio',
       'any.required': '400|O campo "email" é obrigatório',
       'string.email': '400|O email deve ter no formato test@test.com',
     }),
