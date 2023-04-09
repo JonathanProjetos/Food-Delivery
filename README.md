@@ -53,7 +53,7 @@ O Node.js foi utilizado com o intuito de obter os benefícios da escalabilidade 
 git clone git@github.com:JonathanProjetos/Food-Delivery.git
 ```
 
-### Arquivo evn
+### Arquivo env
 - Dentro da pasta Food-Delivery existe o arquivo .env.example nele será nescessário remover o .example e oferecer a url do MongoDB,é uma senha para o Json-Web-Token.
 
 
