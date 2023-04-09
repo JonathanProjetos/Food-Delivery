@@ -5,7 +5,7 @@ const ordersMVPController = {
     const { email } = req.email;
     const { body } = req;
 
-    const newOrder = await MVPServices.create({ ...body, email });
+    const newOrder = await MVPServices.create({ body, email });
     res.status(200).json(newOrder);
   },
 
