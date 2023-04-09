@@ -12,7 +12,7 @@
         "summary": "Autenticação",
         "description": "Autenticação de usuário",
         "tags": [
-          "Autenticação"
+          "Auth"
         ],
         "requestBody": {
           "content": {
@@ -52,7 +52,7 @@
         "summary": "Criação de usuário",
         "description": "Cração de usuário",
         "tags": [
-          "Autenticação"
+          "Auth"
         ],
         "requestBody": {
           "content": {
@@ -108,7 +108,7 @@
         "description": "Validação de presença de token",
         "security": [{ "bearerAuth": [] }],
         "tags": [
-          "Autenticação"
+          "Auth"
         ],
 
         "parameters":[
