@@ -3,7 +3,7 @@
   "info": {
     "title": "Food Delivery API",
     "version": "1.0.0",
-    "description": "Nesta API é possível autenticar, buscar e inserir dados conforme alguns critérios, sendo eles: limite de produtos, que alterna conforme o endpoint, e a quantidade de usuários cadastrados no banco."
+    "description": "Nesta API, é possível autenticar, buscar e inserir dados de acordo com certos critérios, que são: limite de produtos, que varia de acordo com o endpoint, e o número de usuários registrados no banco de dados. Em todas as rotas, exceto em login e register, é necessário autenticação para autorização de acesso aos endpoints. Eu gostaria de dar crédito a Daniele Leão pelo excelente conteúdo sobre Swagger."
   },
   
   "paths" : {
