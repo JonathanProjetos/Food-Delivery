@@ -74,7 +74,7 @@ obs: Caso queira remover os produtos rode:
 npm run products:destroy
 ```
 ### Deploy
-- Foi realizado o deploy da aplicação no railway neste [Link](https://food-delivery-production-fba9.up.railway.app/)
+- Foi realizado o deploy da aplicação no Railway. Logo abaixo, está o link de acesso para a aplicação através do Swagger.
 
 ### Swagger
 - Foi implementada a documentação por parte do Swagger, que possibilita testar a aplicação de forma mais rápida e intuitiva.
