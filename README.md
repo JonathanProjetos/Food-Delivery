@@ -73,6 +73,14 @@ npm run products:import
 obs: Caso queira remover os produtos rode:
 npm run products:destroy
 ```
+
+### Tests
+```
+cd Food-Delivery
+npm test
+ou 
+npm run test:coverage
+```
 ### Deploy
 - Foi realizado o deploy da aplicação no Railway. Logo abaixo, está o link de acesso para a aplicação através do Swagger.
 
