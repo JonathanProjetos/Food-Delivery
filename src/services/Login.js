@@ -18,7 +18,7 @@ const LoginServices = {
 
     // verifico se a senha está correta
     if (!bcryptjs.compareSync(check.password, user.password)) {
-      throw new Error('401|Senha incorreta');
+      throw new Error('401|incorrect password');
     }
 
     // gero o token
@@ -31,7 +31,7 @@ const LoginServices = {
     // busco pelo email no banco de dados
     const user = await userModel.findOne({ email });
 
-    if (!user) throw new Error('401| unauthorized');
+    if (!user) throw new Error('401|unauthorized');
 
     return { message: 'ok' };
   },
@@ -39,7 +39,6 @@ const LoginServices = {
   Register: async (body) => {
     // valido o corpo da requisição
     const check = joiUser(body);
-    console.log(check);
 
     // busco pelo email no banco de dados
     const user = await userModel.findOne({ email: check.email });

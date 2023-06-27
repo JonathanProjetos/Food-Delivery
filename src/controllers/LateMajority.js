@@ -1,11 +1,11 @@
 const lateMajority = require('../services/LateMajority');
 
 const ordersLateMajorityController = {
-  create: async (req, res) => {
+  createOrder: async (req, res) => {
     const { email } = req.email;
     const { body } = req;
 
-    const newOrder = await lateMajority.create({ ...body, email });
+    const newOrder = await lateMajority.createOrder({ ...body, email });
     res.status(200).json(newOrder);
   },
 

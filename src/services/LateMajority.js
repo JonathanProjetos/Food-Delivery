@@ -4,15 +4,8 @@ const checkQuantityItems = require('../middlewares/checkQuantityItems');
 
 const OrdersLateMajorityServices = {
 
-  create: async (body) => {
-    const {
-      name,
-      address,
-      phone,
-      methodPayment,
-      email,
-      orders,
-    } = body;
+  createOrder: async (body) => {
+    const { name, address, phone, methodPayment, email, orders } = body;
 
     // verificando se a quantidade de itens é maior que 5
     checkQuantityItems.bodyLateMajority(orders);

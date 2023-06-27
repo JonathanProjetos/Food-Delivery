@@ -5,15 +5,9 @@ const joiCheckBodyOrder = require('../middlewares/joiBodyOrder');
 
 const OrdersMVPServices = {
 
-  create: async ({ body, email }) => {
+  createOrder: async ({ body, email }) => {
     const data = joiCheckBodyOrder(body);
-    const {
-      name,
-      address,
-      phone,
-      methodPayment,
-      orders,
-    } = data;
+    const { name, address, phone, methodPayment, orders } = data;
 
     // verificando se a quantidade de itens é maior que 5
     checkQuantityItems.bodyMVP(orders);
