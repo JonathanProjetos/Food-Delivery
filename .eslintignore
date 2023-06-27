@@ -1,0 +1,7 @@
+node_modules
+coverage
+.nyc*
+.nyc_output/*
+src/tests/unit/mocks/**
+src/tests/unit/**/*.js
+src/ests/integration/mocks/**
