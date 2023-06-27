@@ -1,11 +1,11 @@
-const { expect, use } = require('chai');
+const { expect } = require('chai');
 const { describe, it } = require('mocha');
 const sinon = require('sinon');
 const { Login, CheckAcessLogin, Register } = require('../../../services/Login');
 const userModel = require('../../../models/userModel');
 const bcryptjs = require('bcryptjs');
 
-describe('Tentando o retorno da função Login', () => {
+describe('Tentando o arquivo Services/Login da função Login', () => {
 
   afterEach(() => {
     sinon.restore();
@@ -63,7 +63,7 @@ describe('Tentando o retorno da função Login', () => {
 
 });
 
-describe('Testando retorno da função CheckAcessLogin',() => {
+describe('Tentando o arquivo Services/Login da função CheckAcessLogin',() => {
 
   afterEach(() => {
     sinon.restore();
@@ -91,7 +91,7 @@ describe('Testando retorno da função CheckAcessLogin',() => {
 
 });
 
-describe('Testando retorno da função Register', () => {
+describe('Tentando o arquivo Services/Login da função Register', () => {
   
   afterEach(() => {
     sinon.restore();
