@@ -5,7 +5,10 @@
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha src/tests/unit/**/*.js --exit",
+    "test:integration": "mocha src/tests/integration/**/*.js --exit",
+    "test:coverage": "nyc --all --include src/models --include src/services --include src/controllers mocha tests/unit/**/*.js --exit",
+    "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx",
     "products:import": "node src/config/seeder",
     "products:destroy": "node src/config/seeder -d"
   },
@@ -31,6 +34,7 @@
     "eslint-plugin-import": "^2.27.5",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.21",
-    "sinon": "^15.0.2"
+    "nyc": "15.1.0",
+    "sinon": "^15.2.0"
   }
 }

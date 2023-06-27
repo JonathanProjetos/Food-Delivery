@@ -1,11 +1,11 @@
 const earlyAdopters = require('../services/EarlyAdopters');
 
 const ordersEarlyAdoptersController = {
-  create: async (req, res) => {
+  createOrder: async (req, res) => {
     const { email } = req.email;
     const { body } = req;
 
-    const newOrder = await earlyAdopters.create({ ...body, email });
+    const newOrder = await earlyAdopters.createOrder({ ...body, email });
     res.status(200).json(newOrder);
   },
 

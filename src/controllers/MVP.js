@@ -1,11 +1,11 @@
 const MVPServices = require('../services/MVP');
 
 const ordersMVPController = {
-  create: async (req, res) => {
+  createOrder: async (req, res) => {
     const { email } = req.email;
     const { body } = req;
 
-    const newOrder = await MVPServices.create({ body, email });
+    const newOrder = await MVPServices.createOrder({ body, email });
     res.status(200).json(newOrder);
   },
 
