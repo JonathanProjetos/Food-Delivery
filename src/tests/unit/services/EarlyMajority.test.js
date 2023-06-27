@@ -1,4 +1,4 @@
-const { expect } = require('chai');
+const { expect, use } = require('chai');
 const { describe, it } = require('mocha');
 const sinon = require('sinon');
 const userModel = require('../../../models/userModel');
@@ -10,10 +10,9 @@ const {
   deleteProductOrder,
   updateOrder,
   updateProductOrder
-} = require('../../../services/LateMajority');
+} = require('../../../services/EarlyMajority');
 
-
-describe('Tentando o arquivo Services/LateMajority da função createOrder', () => {
+describe('Tentando o arquivo Services/EarlyMajority da função createOrder', () => {
   afterEach(() => {
     sinon.restore();
   })
@@ -86,10 +85,38 @@ describe('Tentando o arquivo Services/LateMajority da função createOrder', () 
   
     expect(error).to.be.equal('401|Unauthorized');
   });
-  
-});
 
-describe('Testando o arquivo Services/LateMajority da função getOrders', () => {
+  it('deve retornar um erro ao exceder a quantidade máxima de usuários cadastrados', async () => {
+    
+    const data = {
+      name: 'jonathan',
+      address: 'rua teste',
+      phone: '123456789',
+      email: 'test@test.com',
+      methodPayment: 'dinheiro',
+      orders: [{
+        name: 'pizza',
+        price: 10,
+        quantity: 2
+      }]
+    }
+  
+  
+    sinon.stub(userModel, 'find').resolves(new Array(1000001)); 
+    sinon.stub(userModel, 'findOne').resolves({});
+    sinon.stub(orderModel, 'create').resolves(data);
+  
+    let error;
+    try {
+      await createOrder(data);
+    } catch (err) {
+      error = err.message;
+    }
+  
+    expect(error).to.be.equal('429|Too many requests');
+  });
+});
+describe('Testando o arquivo Services/EarlyMajority da função getOrders', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -123,9 +150,11 @@ describe('Testando o arquivo Services/LateMajority da função getOrders', () =>
 
     expect(await getOrders(emailTest).catch((err) => err.message)).to.be.equal('404|User not found');
   });
+
+  
 });
 
-describe('Testando o arquivo Services/LateMajority da função deleteOrder', () => {
+describe('Testando o arquivo Services/EarlyMajority da função deleteOrder', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -170,7 +199,7 @@ describe('Testando o arquivo Services/LateMajority da função deleteOrder', () 
 
 });
 
-describe('Testando o arquivo Services/LateMajority da função deleteProductOrder', () => {
+describe('Testando o arquivo Services/EarlyMajority da função deleteProductOrder', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -208,7 +237,7 @@ describe('Testando o arquivo Services/LateMajority da função deleteProductOrde
   });
 });
 
-describe('Testando o arquivo Services/LateMajority da função updateOrder', () => {
+describe('Testando o arquivo Services/EarlyMajority da função updateOrder', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -276,7 +305,7 @@ describe('Testando o arquivo Services/LateMajority da função updateOrder', () 
   });
 });
 
-describe('Testando o arquivo Services/LateMajority da função updateProductOrder', () => {
+describe('Testando o arquivo Services/EarlyMajority da função updateProductOrder', () => {
   afterEach(() => {
     sinon.restore();
   });

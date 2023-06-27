@@ -5,9 +5,9 @@
   "main": "src/server.js",
   "scripts": {
     "start": "nodemon server.js",
-    "test": "mocha src/tests/unit/**/*.js --exit",
+    "test": "mocha src/tests/unit/**/*.js --exit --timeout 3000",
     "test:integration": "mocha src/tests/integration/**/*.js --exit",
-    "test:coverage": "nyc --all --include src/models --include src/services --include src/controllers mocha tests/unit/**/*.js --exit",
+    "test:coverage": "nyc --all --include src/models --include src/services --include src/controllers mocha src/tests/unit/**/*.js --exit",
     "lint": "eslint --no-inline-config --no-error-on-unmatched-pattern -c .eslintrc.json . --ext .js, .jsx",
     "products:import": "node src/config/seeder",
     "products:destroy": "node src/config/seeder -d"

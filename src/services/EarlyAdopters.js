@@ -66,14 +66,14 @@ const OrdersEarlyAdoptersServices = {
       { userId: getUser.id },
       { $pull: { orders: { _id: productId } } },
     );
-
+      console.log(result);
     if (result.nModified === 0) throw new Error('404|Product not found');
 
     return { message: 'Product deleted' };
   },
 
   updateOrder: async (body, id, email) => {
-    checkQuantityItems.bodyMVP(body.orders);
+    checkQuantityItems.bodyEarlyAdopters(body.orders);
 
     if (!email) throw new Error('401|Unauthorized');
 

@@ -22,7 +22,6 @@ app.use('/', earlyAdoptersRoute);
 app.use('/', earlyMajorityRoute);
 app.use('/', lateMajorityRoute);
 
-// eslint-disable-next-line no-unused-vars
 app.use((err, _req, res, _next) => {
   const [code, message] = err.message.split('|');
   console.error(err);
