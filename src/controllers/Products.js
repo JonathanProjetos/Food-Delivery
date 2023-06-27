@@ -8,11 +8,11 @@ const ProductsController = {
     res.status(200).json(allProducts);
   },
 
-  create: async (req, res) => {
+  createProduct: async (req, res) => {
     const { name, price, description } = req.body;
     const { email } = req.email;
 
-    const newProduct = await ProductsServices.create({
+    const newProduct = await ProductsServices.createProduct({
       name, price, description, email,
     });
     res.status(201).json(newProduct);
