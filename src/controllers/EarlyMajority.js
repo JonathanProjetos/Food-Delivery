@@ -1,8 +1,8 @@
-const earlyMajority = require('../services/EarlyAdopters');
+const earlyMajority = require('../services/EarlyMajority');
 
 const ordersEarlyMajorityController = {
   createOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { body } = req;
 
     const newOrder = await earlyMajority.createOrder({ ...body, email });
@@ -10,20 +10,20 @@ const ordersEarlyMajorityController = {
   },
 
   getOrders: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const getOrder = await earlyMajority.getOrders(email);
     res.status(200).json(getOrder);
   },
 
   deleteOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const deleteOrder = await earlyMajority.deleteOrder({ email, id });
     res.status(200).json(deleteOrder);
   },
 
   deleteProductOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
 
     const productId = id;
@@ -33,7 +33,7 @@ const ordersEarlyMajorityController = {
   },
 
   updateOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const { body } = req;
 
@@ -42,7 +42,7 @@ const ordersEarlyMajorityController = {
   },
 
   updateProductOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const { body } = req;
 

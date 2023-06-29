@@ -2,7 +2,7 @@ const earlyAdopters = require('../services/EarlyAdopters');
 
 const ordersEarlyAdoptersController = {
   createOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { body } = req;
 
     const newOrder = await earlyAdopters.createOrder({ ...body, email });
@@ -10,20 +10,20 @@ const ordersEarlyAdoptersController = {
   },
 
   getOrders: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const getOrder = await earlyAdopters.getOrders(email);
     res.status(200).json(getOrder);
   },
 
   deleteOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const deleteOrder = await earlyAdopters.deleteOrder({ email, id });
     res.status(200).json(deleteOrder);
   },
 
   deleteProductOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
 
     const productId = id;
@@ -33,7 +33,7 @@ const ordersEarlyAdoptersController = {
   },
 
   updateOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const { body } = req;
 
@@ -42,7 +42,7 @@ const ordersEarlyAdoptersController = {
   },
 
   updateProductOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const { body } = req;
 

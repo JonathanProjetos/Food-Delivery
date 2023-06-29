@@ -7,7 +7,7 @@ module.exports = {
       console.log(authorization);
       const filterBearerSwagger = authorization.split(' ').pop('Bearer');
       const dados = token.validateToken(filterBearerSwagger);
-      req.email = dados;
+      req.email = dados.email;
       next();
     } catch (err) {
       console.error(err);
