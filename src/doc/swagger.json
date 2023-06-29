@@ -781,7 +781,7 @@
               "example": {
                 "name": "chocolate",
                 "price": 200,
-                "description": "meio amargo"
+                "quantity": "1"
               }
             }
           },
