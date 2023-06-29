@@ -2,7 +2,7 @@ const lateMajority = require('../services/LateMajority');
 
 const ordersLateMajorityController = {
   createOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { body } = req;
 
     const newOrder = await lateMajority.createOrder({ ...body, email });
@@ -10,20 +10,20 @@ const ordersLateMajorityController = {
   },
 
   getOrders: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const getOrder = await lateMajority.getOrders(email);
     res.status(200).json(getOrder);
   },
 
   deleteOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const deleteOrder = await lateMajority.deleteOrder({ email, id });
     res.status(200).json(deleteOrder);
   },
 
   deleteProductOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
 
     const productId = id;
@@ -33,7 +33,7 @@ const ordersLateMajorityController = {
   },
 
   updateOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const { body } = req;
 
@@ -42,7 +42,7 @@ const ordersLateMajorityController = {
   },
 
   updateProductOrder: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const { id } = req.params;
     const { body } = req;
 
