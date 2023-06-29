@@ -12,7 +12,7 @@ const {
   updateProductOrder
 } = require('../../../services/EarlyMajority');
 
-describe('Tentando o arquivo Services/EarlyMajority da função createOrder', () => {
+describe('Testando o arquivo Services/EarlyMajority da função createOrder', () => {
   afterEach(() => {
     sinon.restore();
   })

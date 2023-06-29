@@ -5,7 +5,7 @@ const { Login, CheckAcessLogin, Register } = require('../../../services/Login');
 const userModel = require('../../../models/userModel');
 const bcryptjs = require('bcryptjs');
 
-describe('Tentando o arquivo Services/Login da função Login', () => {
+describe('Testando o arquivo Services/Login da função Login', () => {
 
   afterEach(() => {
     sinon.restore();
@@ -63,7 +63,7 @@ describe('Tentando o arquivo Services/Login da função Login', () => {
 
 });
 
-describe('Tentando o arquivo Services/Login da função CheckAcessLogin',() => {
+describe('Testando o arquivo Services/Login da função CheckAcessLogin',() => {
 
   afterEach(() => {
     sinon.restore();
@@ -91,7 +91,7 @@ describe('Tentando o arquivo Services/Login da função CheckAcessLogin',() => {
 
 });
 
-describe('Tentando o arquivo Services/Login da função Register', () => {
+describe('Testando o arquivo Services/Login da função Register', () => {
   
   afterEach(() => {
     sinon.restore();

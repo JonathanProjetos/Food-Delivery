@@ -13,7 +13,7 @@ const {
 } = require('../../../services/LateMajority');
 
 
-describe('Tentando o arquivo Services/LateMajority da função createOrder', () => {
+describe('Testando o arquivo Services/LateMajority da função createOrder', () => {
   afterEach(() => {
     sinon.restore();
   })

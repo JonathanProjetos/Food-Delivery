@@ -4,7 +4,7 @@ const sinon = require('sinon');
 const productModel = require('../../../models/productModel');
 const { getAll, createProduct } = require('../../../services/Products');
 
-describe('Tentando o arquivo Services/Products da função getAll', () => {
+describe('Testando o arquivo Services/Products da função getAll', () => {
   afterEach(() => {
     sinon.restore();
   });
@@ -37,7 +37,7 @@ describe('Tentando o arquivo Services/Products da função getAll', () => {
   });
 });
 
-describe('Tentando o arquivo Services/Products da função createProduct', () => {
+describe('Testando o arquivo Services/Products da função createProduct', () => {
   afterEach(() => {
     sinon.restore();
   });
