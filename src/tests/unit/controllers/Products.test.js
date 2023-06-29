@@ -2,7 +2,7 @@ const { expect } = require('chai');
 const { describe, it } = require('mocha');
 const sinon = require('sinon');
 const { getAll, createProduct } = require('../../../controllers/Products');
-const LoginServices = require('../../../services/Products');
+const ProductServices = require('../../../services/Products');
 
 
 describe('Tentando o arquivo Controllers/Products da função getAll', () => {
@@ -20,13 +20,13 @@ describe('Tentando o arquivo Controllers/Products da função getAll', () => {
       json: sinon.stub(),
     }
 
-    sinon.stub(LoginServices, 'getAll').resolves([]);
+    sinon.stub(ProductServices, 'getAll').resolves([]);
 
     await getAll(req, res);
 
     expect(res.status.calledWith(200)).to.be.equal(true);
     expect(res.json.calledWith([])).to.be.equal(true);
-    expect(LoginServices.getAll.calledWith(req.email)).to.be.equal(true);
+    expect(ProductServices.getAll.calledWith(req.email)).to.be.equal(true);
   });
 });
 
@@ -50,7 +50,7 @@ describe('Tentando o arquivo Controllers/Products da função createProduct', ()
       json: sinon.stub(),
     }
 
-    sinon.stub(LoginServices, 'createProduct').resolves({});
+    sinon.stub(ProductServices, 'createProduct').resolves({});
 
     await createProduct(req, res);
 
@@ -58,6 +58,6 @@ describe('Tentando o arquivo Controllers/Products da função createProduct', ()
 
     expect(res.status.calledWith(201)).to.be.equal(true);
     expect(res.json.calledWith({})).to.be.equal(true);
-    expect(LoginServices.createProduct.calledWith({...req.body, email})).to.be.equal(true);
+    expect(ProductServices.createProduct.calledWith({...req.body, email})).to.be.equal(true);
   });
 });
