@@ -8,7 +8,7 @@ const LoginController = {
   },
 
   CheckAcessLogin: async (req, res) => {
-    const { email } = req.email;
+    const { email } = req;
     const message = await LoginServices.CheckAcessLogin(email);
     res.status(200).json(message);
   },
