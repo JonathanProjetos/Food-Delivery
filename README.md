@@ -54,7 +54,7 @@ git clone git@github.com:JonathanProjetos/Food-Delivery.git
 ```
 
 ### Arquivo env
-- Dentro da pasta Food-Delivery existe o arquivo .env.example nele será nescessário remover o .example e oferecer a url do MongoDB,é uma senha para o Json-Web-Token.
+- Dentro da pasta Food-Delivery existe o arquivo .env.example nele será nescessário remover o .example e oferecer a url do MongoDB, e uma senha para o Json-Web-Token.
 
 
 ### Instalar dependências
@@ -62,7 +62,7 @@ git clone git@github.com:JonathanProjetos/Food-Delivery.git
 cd Food-Delivery
 docker compose up -d
 
-obs: O proprio comando docker vai instalar as dependências e startar a aplicação.
+obs: O comando "docker compose up -d" vai instalar as dependências e tornar a aplicação disponível na porta 3001.
 ```
 ### Adicionar os Produtos
 - Após subir os conteiners docker, abra o terminal e rode os comandos abaixo.
